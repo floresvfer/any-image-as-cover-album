@@ -35,14 +35,15 @@ function urlImgParam() {
     });
 }
 
-$(window).ready(function () {
-
+function setCover(url){
     urlImgParam();
 
-    const url = document.getElementById('cover-img').getAttribute('src');
+    url = url !== undefined ? url : document.getElementById('cover-img').getAttribute('src');
     convertImgToBase64URL(url, base64IMG => {
         document.getElementById('cover-img').setAttribute('src', base64IMG);
     });
+
+    console.log(url);
 
     const sourceImage = document.getElementById("cover-img");
     const colorThief = new ColorThief();
@@ -53,10 +54,16 @@ $(window).ready(function () {
     for(i = 0; i<3; i++)
         inversecolor[i] = white[i] - color[i];
 
+    document.getElementById('link-txt').style.backgroundColor = "rgb(" + color + ")";
+    document.getElementById('link-txt').style.color = "rgb(" + inversecolor + ")";
     //
-     document.getElementById("cover-div").style.backgroundImage = "url(" + sourceImage.getAttribute("src") + ")";
+    document.getElementById("cover-div").style.backgroundImage = "url(" + sourceImage.getAttribute("src") + ")";
+}
 
+$(document).ready(function () {
+    document.getElementById('link-txt').setAttribute("value", "https://lh3.googleusercontent.com/proxy/WofJ1Lrbw38M93Fs7O3NTknU3y-81qDOJEb1vyZg4hOT8LeD2smycVaoISrbYFAOTdqYiyFmF4N-HTzD-_vrJltamNMT92PpSpkSR-Fh6nrAegLjprWNqoNLk1U9DX5x6v4zX8DCQDMMXpw")
 
+    setCover();
 
     let card = document.getElementById('cover-div');
     let container = document.querySelector('body');
@@ -71,6 +78,14 @@ $(window).ready(function () {
         card.style.transition = "all 0.5s ease";
         card.style.transform = `rotateY(0deg) rotateX(0deg)`;
     });
+
+    window.onkeypress = (event) => {
+        const keyCode = (event.keyCode || event.which);
+        if (keyCode == '13') {
+            const url = $('#link-txt').val();
+            setCover(url);
+        }
+    };
 });
 
 

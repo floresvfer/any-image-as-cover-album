@@ -1,43 +1,57 @@
-.cover{
+.cover {
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    text-align:center;
+    text-align: center;
     width: 60vw;
     height: 60vw;
     max-height: 600px !important;
     max-width: 600px !important;
     margin-left: auto;
     margin-right: auto;
-    -webkit-box-shadow: 0px 20px 37px 14px rgba(0,0,0,0.37);
-    -moz-box-shadow: 0px 20px 37px 14px rgba(0,0,0,0.37);
-    box-shadow: 0px 20px 37px 14px rgba(0,0,0,0.37);
+    -webkit-box-shadow: 0px 20px 37px 14px rgba(0, 0, 0, 0.37);
+    -moz-box-shadow: 0px 20px 37px 14px rgba(0, 0, 0, 0.37);
+    box-shadow: 0px 20px 37px 14px rgba(0, 0, 0, 0.37);
     transform-style: preserve-3d;
 }
 
+#link-txt {
+    transform: rotate(270deg);
+    width: 50vh;
+    position: absolute;
+    bottom: 0px;
+    left: -25vh;
+    border: none;
+}
 
-.on-top{
+#link-txt:focus {
+    border: none;
+}
+
+
+.on-top {
     position: relative;
     z-index: 2;
 }
 
-.cover .on-top img{
+.cover .on-top img {
     width: 18%;
     position: absolute;
     bottom: 3%;
     left: 3%;
 }
 
-.container{
+.container {
     margin-top: 15vh;
 }
 
-.image{
+.image {
     transform-style: preserve-3d;
     background-image: url("");
     background-repeat: no-repeat;
     background-size: auto 100%;
+    background-position: center;
     z-index: 1;
 }
 
