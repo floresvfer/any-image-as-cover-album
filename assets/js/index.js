@@ -21,19 +21,38 @@ function convertImgToBase64URL(url, callback, outputFormat){
     img.src = url;
 }
 
+function getUrlParams(action){
+    const queryString = window.location.search;
+    const urlPrams = new URLSearchParams(queryString);
+    action(urlPrams);
+}
 
+function urlImgParam() {
+    getUrlParams((params) => {
+        const img = params.get('img');
+        if (img !== null)
+            document.getElementById('cover-img').setAttribute('src', img);
+    });
+}
 
 $(window).ready(function () {
+
+    urlImgParam();
+
     const url = document.getElementById('cover-img').getAttribute('src');
     convertImgToBase64URL(url, base64IMG => {
         document.getElementById('cover-img').setAttribute('src', base64IMG);
-        console.log(base64IMG);
     });
 
     const sourceImage = document.getElementById("cover-img");
     const colorThief = new ColorThief();
     const color = colorThief.getColor(sourceImage);
     document.body.style.backgroundColor = "rgb(" + color + ")";
+    const white = [255,255,255];
+    const inversecolor = [];
+    for(i = 0; i<3; i++)
+        inversecolor[i] = white[i] - color[i];
+
     //
      document.getElementById("cover-div").style.backgroundImage = "url(" + sourceImage.getAttribute("src") + ")";
 
