@@ -40,7 +40,7 @@ function setCover(url){
 
     url = url !== undefined ? url : document.getElementById('cover-img').getAttribute('src');
     convertImgToBase64URL(url, base64IMG => {
-        document.getElementById('cover-img').setAttribute('src', base64IMG);
+        document.getElementById('cover-img').setAttribute('src', url);
     });
 
     console.log(url);
